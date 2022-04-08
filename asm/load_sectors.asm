@@ -19,7 +19,7 @@ load_sectors:
     int 0x13
 
     ; handle error if carry is 1
-    jc load_sectors_error
+    ; jc load_sectors_error
 
     ; get original value of `dx`
     pop dx
@@ -27,13 +27,19 @@ load_sectors:
     ; `dh` is the passed argument for the number of sectors that should be read
     ; handle error if al != dh
     cmp dh, al
-    jne load_sectors_error
+    ; jne load_sectors_error
 
     ret
 
 load_sectors_error:
-    mov ax, load_sectors_error_msg
-    call print_str
+    mov ah, 0x0e
+    mov al, 'E'
+    int 0x10
+    mov al, 'R'
+    int 0x10
+    mov al, 'R'
+    int 0x10
+
     jmp $
 
 load_sectors_error_msg db "Failed to read disk",0

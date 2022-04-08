@@ -28,7 +28,7 @@ load_kernel:
 	call print_str
 
 	mov bx, KERNEL_OFFSET
-	mov dh, 1
+	mov dh, 20
 	mov dl, [BOOT_DRIVE]
 	call load_sectors
 

@@ -1,5 +1,6 @@
 print_str:
 	push bx
+	push ax
 
 	mov bx, ax
 	mov ah, 0x0e
@@ -36,6 +37,7 @@ print_str_newline_end:
 	jmp print_str_loop
 
 print_str_end:
+	pop ax
 	pop bx
 	ret
 
